@@ -18,3 +18,11 @@ spec:
       containers:
       - name: monitor
         image: localhost:32000/monitor:test
+---
+# Create kubenetes namespace called cvez
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cvez
+  labels:
+    name: cvez
