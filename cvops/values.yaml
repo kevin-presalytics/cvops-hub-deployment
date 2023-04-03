@@ -1,0 +1,11 @@
+# Default values for cvops.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+spec:
+  destination:
+    server: http://kuberentes.default.svc
+  source:
+    repoURL: git@github.com:kevin-presalytics/cvops-hub-deployment.git
+    targetRevision: main
+  
