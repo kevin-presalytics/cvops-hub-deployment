@@ -9,8 +9,11 @@ spec:
   destination:
     namespace: mqtt
     server: {{ .Values.spec.destination.server }}
-  project: default
+  project: cvops
   source:
-    chart: vernemq
+    path: helm/vernemq
     repoURL: https://github.com/vernemq/docker-vernemq.git
     targetRevision: HEAD
+    chart: vernemq
+    helm:
+      releaseName: vernemq

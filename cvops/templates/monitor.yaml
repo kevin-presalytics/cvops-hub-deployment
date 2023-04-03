@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: cvops
     server: {{ .Values.spec.destination.server }}
-  project: default
+  project: cvops
   source:
     path: monitor
     repoURL: {{ .Values.spec.source.repoURL }}
