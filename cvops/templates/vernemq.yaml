@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vernemq
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: mqtt
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    chart: vernemq
+    repoURL: https://github.com/vernemq/docker-vernemq.git
+    targetRevision: HEAD

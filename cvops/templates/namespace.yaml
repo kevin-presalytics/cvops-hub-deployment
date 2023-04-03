@@ -4,3 +4,10 @@ metadata:
   name: cvops
   labels:
     name: cvops
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mqtt
+  labels:
+    name: mqtt
