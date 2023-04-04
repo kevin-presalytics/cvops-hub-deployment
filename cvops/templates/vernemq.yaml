@@ -12,8 +12,8 @@ spec:
   project: cvops
   source:
     path: helm/vernemq
-    repoURL: https://github.com/vernemq/docker-vernemq.git
-    targetRevision: HEAD
+    repoURL: https://vernemq.github.io/docker-vernemq/index.yaml
+    targetRevision: 1.8.1
     chart: vernemq
     helm:
       releaseName: vernemq
