@@ -12,7 +12,7 @@ spec:
   project: cvops
   sources:
   - repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 12.2.7
+    targetRevision: 1.0.0
     chart: argo
     helm:
       releaseName: argo-workflows
