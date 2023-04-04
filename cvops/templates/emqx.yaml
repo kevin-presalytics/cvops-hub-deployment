@@ -21,3 +21,7 @@ spec:
   - repoURL: {{ .Values.spec.source.repoURL }}
     ref: values
     targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
