@@ -184,7 +184,7 @@ controller:
     # -- Create a service account for the controller
     create: true
     # -- Service account name
-    name: ""
+    name: argo-workflows
     # -- Labels applied to created service account
     labels: {}
     # -- Annotations applied to created service account
