@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: influxdb
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: databases
+    server: {{ .Values.spec.destination.server }}
+  project: cvops
+  sources:
+  - repoURL: https://helm.influxdata.com/
+    targetRevision: 4.12.1
+    chart: influxdb
+    helm:
+      releaseName: influxdb
+      valueFiles:
+      - $values/influxdb/local-values.yaml
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    ref: values
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
