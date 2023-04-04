@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: emqx
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: mqtt
+    server: {{ .Values.spec.destination.server }}
+  project: cvops
+  sources:
+  - repoURL: https://repos.emqx.io/charts
+    targetRevision: 5.0.21
+    chart: emqx
+    helm:
+      releaseName: emqx
+      valueFiles:
+      - $values/mqtt/emqx/local-values.yaml
+  - repoURL: {{ .Values.spec.sources.repoURL }}
+    ref: values
+    targetRevision: {{ .Values.spec.sources.targetRevision }}
