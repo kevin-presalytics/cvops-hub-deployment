@@ -1,0 +1,10 @@
+kind: ConfigMap
+metadata:
+  name: workflow-controller-configmap
+data:
+  artifactRepository: |
+    archiveLogs: true
+    s3:
+      endpoint: minio-svc.storage.svc.cluster.local:9000
+      bucket: argo
+      insecure: true
