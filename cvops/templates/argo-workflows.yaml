@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflows
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argo-workflows
+    server: {{ .Values.spec.destination.server }}
+  project: cvops
+  sources:
+  - repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 12.2.7
+    chart: argo
+    helm:
+      releaseName: argo-workflows
+      valueFiles:
+      - $values/argo-workflows/local-values.yaml
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    ref: values
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
