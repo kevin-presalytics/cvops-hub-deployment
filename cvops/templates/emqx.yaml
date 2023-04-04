@@ -18,6 +18,6 @@ spec:
       releaseName: emqx
       valueFiles:
       - $values/mqtt/emqx/local-values.yaml
-  - repoURL: {{ .Values.spec.sources.repoURL }}
+  - repoURL: {{ .Values.spec.source.repoURL }}
     ref: values
     targetRevision: {{ .Values.spec.sources.targetRevision }}
