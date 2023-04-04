@@ -18,3 +18,10 @@ metadata:
   name: storage
   labels:
     name: storage
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: databases
+  labels:
+    name: databases
