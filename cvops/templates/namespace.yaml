@@ -11,3 +11,10 @@ metadata:
   name: mqtt
   labels:
     name: mqtt
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: storage
+  labels:
+    name: storage
