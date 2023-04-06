@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: argocd
 
 # KH Note: Resource commented out so that this app patches the current version
 # of ArgoCD running in the cluster -- not a fresh install
