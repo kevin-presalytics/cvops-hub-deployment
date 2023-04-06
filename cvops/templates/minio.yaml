@@ -22,7 +22,7 @@ spec:
     ref: values
     targetRevision: {{ .Values.spec.source.targetRevision }}
   - repoURL: {{ .Values.spec.source.repoURL }}
-    path: secrets
+    path: minio/secrets
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
     automated:
