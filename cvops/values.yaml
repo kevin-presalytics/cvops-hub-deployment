@@ -4,7 +4,7 @@
 
 spec:
   destination:
-    server: in-cluster
+    server: 'https://kubernetes.default.svc'
   source:
     repoURL: git@github.com:kevin-presalytics/cvops-hub-deployment.git
     targetRevision: main
