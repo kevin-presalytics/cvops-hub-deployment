@@ -3,3 +3,4 @@ id_rsa.*
 .vscode
 tmp/
 .env
+*.env

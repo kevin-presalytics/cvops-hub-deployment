@@ -14,3 +14,6 @@ secretGenerator:
   - name: argocd-vault-plugin-credentials
     envs:
     - argocd-vault-plugin-credentials.env
+
+generatorOptions:
+  disableNameSuffixHash: true
