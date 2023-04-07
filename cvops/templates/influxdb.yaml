@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: databases
     server: {{ .Values.spec.destination.server }}
-  project: cvops
+  project: default
   sources:
   - repoURL: https://helm.influxdata.com/
     targetRevision: 4.12.1

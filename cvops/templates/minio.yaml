@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: storage
     server: {{ .Values.spec.destination.server }}
-  project: cvops
+  project: default
   sources:
   - repoURL: https://charts.min.io/
     targetRevision: 5.0.7

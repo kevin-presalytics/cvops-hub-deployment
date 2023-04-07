@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: argo-workflows
     server: {{ .Values.spec.destination.server }}
-  project: cvops
+  project: default
   sources:
   - repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 1.0.0

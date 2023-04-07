@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: mqtt
     server: {{ .Values.spec.destination.server }}
-  project: cvops
+  project: default
   sources:
   - repoURL: https://repos.emqx.io/charts
     targetRevision: 5.0.21
