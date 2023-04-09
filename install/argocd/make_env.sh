@@ -1,6 +1,6 @@
 #! /bin/sh
 
-cat << EOF > argocd-vault-plugin-credentials.env
+cat << EOF > vault-configuration.env
 AVP_TYPE=azurekeyvault
 AZURE_TENANT_ID=${AZURE_TENANT_ID}
 AZURE_CLIENT_ID=${AZURE_CLIENT_ID}

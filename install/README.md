@@ -1,10 +1,8 @@
 To install on microk8s:
 
 ```bash
-sudo snap install microk8s --classsic
-microk8s enable dns
-microk8s enable hostpath-storage
-microk8s enable registry
+sudo snap install microk8s --classic
+microk8s enable dns hostpath-storage registry
 ```
 
 To install ArgoCD with vault plugin (assumes microk8s cluster):
