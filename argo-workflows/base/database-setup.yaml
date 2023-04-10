@@ -4,7 +4,6 @@ metadata:
   name: database-setup
 data:
   db-setup.sh: |
-    sleep 1000
     psql -U postgres -h ${ARGO_DB_HOST} -c "CREATE DATABASE argo_workflows;"
     psql -U postgres -h ${ARGO_DB_HOST} -c "CREATE ROLE ${ARGO_DB_USERNAME} WITH ENCRYPTED PASSWORD '"'"'${ARGO_DB_PASSWORD}'"'"';"
     psql -U postgres -h ${ARGO_DB_HOST} -c "GRANT ALL PRIVILEGES ON DATABASE argo_workflows TO ${ARGO_DB_USERNAME};"    
