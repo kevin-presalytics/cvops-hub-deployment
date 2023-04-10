@@ -15,6 +15,7 @@ spec:
     path: argo-workflows/overlays/local
     targetRevision: {{ .Values.spec.source.targetRevision }}
     kustomize: {}
+    plugin: {}
   syncPolicy:
     automated:
       prune: true
