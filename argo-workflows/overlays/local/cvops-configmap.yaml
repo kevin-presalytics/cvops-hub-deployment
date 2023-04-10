@@ -5,4 +5,4 @@ metadata:
   namespace: argo
 data:
   postgresql-host: postgresql.databases.svc.cluster.local
-  postgresql-port: 5432
+  postgresql-port: "5432"
