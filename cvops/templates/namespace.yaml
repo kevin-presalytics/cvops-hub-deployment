@@ -29,6 +29,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: argo-workflows
+  name: argo
   labels:
-    name: argo-workflows
+    name: argo

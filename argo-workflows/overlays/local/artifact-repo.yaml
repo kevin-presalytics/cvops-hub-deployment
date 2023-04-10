@@ -1,6 +1,8 @@
 kind: ConfigMap
+apiVersion: v1
 metadata:
   name: workflow-controller-configmap
+  namespace: argo
 data:
   artifactRepository: |
     archiveLogs: true
