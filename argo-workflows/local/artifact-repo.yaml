@@ -8,3 +8,9 @@ data:
       endpoint: minio-svc.storage.svc.cluster.local:9000
       bucket: argo
       insecure: true
+      accessKeySecret:
+        name: minio-access
+        key: rootUser
+      secretKeySecret:
+        name: minio-access
+        key: rootPassword

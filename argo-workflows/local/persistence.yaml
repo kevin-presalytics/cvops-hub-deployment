@@ -1,0 +1,22 @@
+kind: ConfigMap
+metadata:
+  name: workflow-controller-configmap
+data:
+  persistence: |
+    archive: true
+    postgresql:
+      host: postgresql.databases.svc.cluster.local
+      port: 5432
+      database: postgres
+      tableName: argo_workflows
+      # the database secrets must be in the same namespace of the controller
+      userNameSecret:
+        name: argo-postgres-config
+        key: username
+      passwordSecret:
+        name: argo-postgres-config
+        key: password
+      ssl: true
+      # sslMode must be one of: disable, require, verify-ca, verify-full
+      # you can find more information about those ssl options here: https://godoc.org/github.com/lib/pq
+      sslMode: require

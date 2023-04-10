@@ -1,5 +1,14 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+namespace: argo-workflows
+
 bases:
 - ../base
 
-# patchesStrategicMerge:
-#   - artifact-repo.yaml
+resources:
+- cvops-configmap.yaml
+
+patchesStrategicMerge:
+- artifact-repo.yaml
+- persistence.yaml
+

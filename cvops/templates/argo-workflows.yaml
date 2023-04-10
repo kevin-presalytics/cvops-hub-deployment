@@ -11,16 +11,10 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   sources:
-  - repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 1.0.0
-    chart: argo
-    helm:
-      releaseName: argo-workflows
-      valueFiles:
-      - $values/argo-workflows/local-values.yaml
   - repoURL: {{ .Values.spec.source.repoURL }}
-    ref: values
+    path: argo-workflows
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    kustomize: {}
   syncPolicy:
     automated:
       prune: true

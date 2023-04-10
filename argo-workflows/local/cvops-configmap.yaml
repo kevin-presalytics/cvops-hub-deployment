@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cvops-config
+data:
+  postgresql-host: postgresql.databases.svc.cluster.local
+  postgresql-port: 5432

@@ -1,0 +1,43 @@
+kind: Deployment
+metadata:
+  name: argo-server
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: database-setup
+        image: bitnami/postgresql:15.2.0-debian-11-r16
+        command: ["/bin/sh", "-c", "/tmp/db-setup.sh"]
+        env:
+        - name: ARGO_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: argo-postgres-config
+              key: password
+        - name: ARGO_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: argo-postgres-config
+              key: username
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-credentials
+              key: postgresql-password
+        - name: ARGO_DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: cvops-config
+              key: postgresql-host
+        volumeMounts:
+          name: db-setup
+          mountPath: /tmp/
+          read-only: true
+  volumes:
+    name: db-setup
+    configMap:
+      name: database-setup
+      defaultMode: 0777
+
+    
+
