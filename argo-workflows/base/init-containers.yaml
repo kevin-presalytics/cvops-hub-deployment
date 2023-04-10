@@ -32,14 +32,14 @@ spec:
               name: cvops-config
               key: postgresql-host
         volumeMounts:
-          name: db-setup
-          mountPath: /tmp/
+        - name: db-setup
+          mountPath: /tmp
           read-only: true
-  volumes:
-    name: db-setup
-    configMap:
-      name: database-setup
-      defaultMode: 0777
+      volumes:
+      - name: db-setup
+        configMap:
+          name: database-setup
+          defaultMode: 0777
 
     
 
