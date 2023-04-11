@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: logging
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: monitoring
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  sources:
+  - repoURL: https://helm.elastic.co
+    targetRevision: 12.2.7
+    chart: elasticsearch
+    helm:
+      releaseName: elasticsearch
+      valueFiles:
+      - $values/postgresql/local-values.yaml
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    ref: values
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    path: postgresql/secrets
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true

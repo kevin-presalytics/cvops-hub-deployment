@@ -11,16 +11,6 @@ spec:
         image: bitnami/postgresql:15.2.0-debian-11-r16
         command: ["/bin/sh", "-c", "/tmp/db-setup.sh"]
         env:
-        - name: ARGO_DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: argo-postgres-config
-              key: password
-        - name: ARGO_DB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: argo-postgres-config
-              key: username
         - name: PGPASSWORD
           valueFrom:
             secretKeyRef:
