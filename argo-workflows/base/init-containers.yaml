@@ -34,7 +34,6 @@ spec:
         volumeMounts:
         - name: db-setup
           mountPath: /tmp
-          read-only: true
         securityContext:
           runAsUser: 1000
           runAsGroup: 1000
