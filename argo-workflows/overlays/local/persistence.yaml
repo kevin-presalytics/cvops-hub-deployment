@@ -14,10 +14,10 @@ data:
       # the database secrets must be in the same namespace of the controller
       userNameSecret:
         name: postgresql-credentials
-        key: username
+        key: postgresql-username
       passwordSecret:
         name: postgresql-credentials
-        key: password
+        key: postgresql-password
       ssl: false
       # sslMode must be one of: disable, require, verify-ca, verify-full
       # you can find more information about those ssl options here: https://godoc.org/github.com/lib/pq
