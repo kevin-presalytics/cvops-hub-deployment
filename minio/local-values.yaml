@@ -364,7 +364,7 @@ makeUserJob:
   #   secretKey: console123
   #   user: console
   ## Or you can refer to specific secret
-  - accessKey: externalSecret
+  - accessKey: console-svcacct
     existingSecret: minio-access
     existingSecretKey: rootPassword
     user: console
