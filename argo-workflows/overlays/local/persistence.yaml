@@ -9,7 +9,7 @@ data:
     postgresql:
       host: postgresql.databases.svc.cluster.local
       port: 5432
-      database: postgres
+      database: argo_workflows
       tableName: argo_workflows
       # the database secrets must be in the same namespace of the controller
       userNameSecret:
