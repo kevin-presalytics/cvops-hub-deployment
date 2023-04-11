@@ -8,8 +8,6 @@ spec:
   - name: test-pod
     image: bitnami/postgresql:15.2.0-debian-11-r16
     command: ["/bin/bash"]
-    ports:
-    - containerPort: 80
     env:
     - name: ARGO_DB_PASSWORD
       valueFrom:
