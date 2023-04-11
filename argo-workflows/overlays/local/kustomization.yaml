@@ -7,7 +7,6 @@ bases:
 
 resources:
 - cvops-configmap.yaml
-- test-pod.yaml
 
 patchesStrategicMerge:
 - artifact-repo.yaml

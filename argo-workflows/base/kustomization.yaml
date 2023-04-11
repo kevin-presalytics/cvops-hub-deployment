@@ -5,7 +5,6 @@ resources:
   - https://github.com/argoproj/argo-workflows/releases/download/v3.4.6/install.yaml
   - database-setup.yaml
   - artifact-secret.yaml
-  - persistence-secret.yaml
   - postgresql-credentials.yaml
 
 patchesStrategicMerge:
