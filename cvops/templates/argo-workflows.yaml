@@ -15,8 +15,8 @@ spec:
     path: argo-workflows/overlays/local
     targetRevision: {{ .Values.spec.source.targetRevision }}
     plugin: {}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: true
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #     allowEmpty: true

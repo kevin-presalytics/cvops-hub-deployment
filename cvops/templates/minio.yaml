@@ -24,10 +24,10 @@ spec:
   - repoURL: {{ .Values.spec.source.repoURL }}
     path: minio/secrets
     targetRevision: {{ .Values.spec.source.targetRevision }}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: true
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #     allowEmpty: true
   plugin:
     name: argocd-vault-plugin
