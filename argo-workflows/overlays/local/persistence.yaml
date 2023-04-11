@@ -13,10 +13,10 @@ data:
       tableName: argo_workflows
       # the database secrets must be in the same namespace of the controller
       userNameSecret:
-        name: argo-postgres-config
+        name: postgresql-credentials
         key: username
       passwordSecret:
-        name: argo-postgres-config
+        name: postgresql-credentials
         key: password
       ssl: false
       # sslMode must be one of: disable, require, verify-ca, verify-full
