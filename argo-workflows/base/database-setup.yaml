@@ -4,5 +4,5 @@ metadata:
   name: database-setup
 data:
   db-setup.sh: |
-    psql -U postgres -h ${ARGO_DB_HOST} -c "CREATE DATABASE argo_workflows;"
+    psql -U postgres -h ${ARGO_DB_HOST} -c "CREATE DATABASE argo_workflows;" || exit 0
     
