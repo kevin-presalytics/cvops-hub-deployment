@@ -6,8 +6,7 @@ metadata:
 spec:
   containers:
   - name: test-pod
-    image: bitnami/postgresql:15.2.0-debian-11-r16
-    command: ["/bin/bash"]
+    image: ubuntu:22.04
     env:
     - name: ARGO_DB_PASSWORD
       valueFrom:
