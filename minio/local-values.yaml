@@ -100,7 +100,7 @@ rootPassword: ""
 ## All mentioned variables will be ignored in values file.
 ## .data.rootUser and .data.rootPassword are mandatory,
 ## others depend on enabled status of corresponding sections.
-existingSecret: ""
+existingSecret: minio-access
 
 ## Directory on the MinIO pof
 certsPath: "/etc/minio/certs/"
@@ -334,14 +334,14 @@ users:
   ## Add new policies as explained here https://min.io/docs/minio/kubernetes/upstream/administration/identity-access-management.html#access-management
   ## NOTE: this will fail if LDAP is enabled in your MinIO deployment
   ## make sure to disable this if you are using LDAP.
-  - accessKey: console
-    secretKey: console123
-    policy: consoleAdmin
+  # - accessKey: console
+  #   secretKey: console123
+  #   policy: consoleAdmin
   # Or you can refer to specific secret
-  #- accessKey: externalSecret
-  #  existingSecret: my-secret
-  #  existingSecretKey: password
-  #  policy: readonly
+  - accessKey: externalSecret
+    existingSecret: my-secret
+    existingSecretKey: password
+    policy: consoleAdmin
 
 ## Additional Annotations for the Kubernetes Job makeUserJob
 makeUserJob:
