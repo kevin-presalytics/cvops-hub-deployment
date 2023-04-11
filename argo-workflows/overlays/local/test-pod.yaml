@@ -9,7 +9,6 @@ spec:
     image: bitnami/postgresql:15.2.0-debian-11-r16
     ports:
     - containerPort: 80
-    command: ["/bin/bash"]
     env:
     - name: ARGO_DB_PASSWORD
       valueFrom:
