@@ -121,7 +121,7 @@ emqxConfig:
   EMQX_CLUSTER__DISCOVERY_STRATEGY: "dns"
   EMQX_DASHBOARD__DEFAULT_USERNAME: "admin"
   EMQX_DASHBOARD__DEFAULT_PASSWORD: "public"
-  EMQX_API_KEY__BOOTSTRAP_FILE: "/tmp/apikeys.txt"
+  EMQX_API_KEY__BOOTSTRAP_FILE: "/tmp/api_keys.txt"
 
 ## EMQX Enterprise Edition requires manual creation of a Secret containing the licensed content. Write the name of Secret to the value of "emqxLicenseSecretName"
 ## Example:
