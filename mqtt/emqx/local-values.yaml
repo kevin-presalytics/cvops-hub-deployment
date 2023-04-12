@@ -73,7 +73,8 @@ extraVolumeMounts:
 ## Additional volumes to the default backend pod.
 extraVolumes:
 - name: api-key
-  secret:  api-key
+  secret:  
+    secretName: api-key
 
 # Containers that run before the creation of EMQX containers. They can contain utilities or setup scripts.
 initContainers: {}
