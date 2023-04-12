@@ -220,7 +220,7 @@ ingress:
     tls: []
 
 podSecurityContext:
-  enabled: false
+  enabled: true
   fsGroup: 1000
   fsGroupChangePolicy: Always
   runAsUser: 1000
