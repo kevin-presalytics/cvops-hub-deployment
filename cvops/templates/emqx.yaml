@@ -12,7 +12,7 @@ spec:
   project: default
   sources:
   - repoURL: https://github.com/emqx/emqx/tree/master/deploy/charts
-    targetRevision: master
+    targetRevision: 5.0.21
     chart: emqx
     helm:
       releaseName: emqx
