@@ -13,7 +13,7 @@ spec:
   sources:
   - repoURL: https://github.com/emqx/emqx.git
     targetRevision: master
-    path: deploy/charts/eqmx
+    path: deploy/charts/emqx
     helm:
       valueFiles:
       - $values/mqtt/emqx/local-values.yaml
