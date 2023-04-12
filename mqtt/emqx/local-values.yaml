@@ -45,7 +45,7 @@ podAnnotations: {}
 podManagementPolicy: Parallel
 
 persistence:
-  enabled: false
+  enabled: true
   size: 20Mi
   storageClassName: ""
   accessMode: ReadWriteOnce
@@ -64,14 +64,14 @@ resources: {}
 
 extraVolumeMounts: []
 ## Additional volumeMounts to the default backend container.
-#  - name: my-owner-acl
-#    mountPath: /opt/emqx/etc/acl.conf
-#    subPath: acl.conf
+  - name: api-key
+    mountPath: /opt/emqx/etc/api_keys.txt
+    subPath: api_keys.txt
 
 extraVolumes: []
 ## Additional volumes to the default backend pod.
-#  - name: my-owner-acl
-#    secret:  fake-acl-conf
+  - name: api-key
+    secret:  api-key
 
 # Containers that run before the creation of EMQX containers. They can contain utilities or setup scripts.
 initContainers: {}
@@ -118,6 +118,7 @@ emqxConfig:
   EMQX_CLUSTER__DISCOVERY_STRATEGY: "dns"
   EMQX_DASHBOARD__DEFAULT_USERNAME: "admin"
   EMQX_DASHBOARD__DEFAULT_PASSWORD: "public"
+  EMQX_API_KEY__BOOTSTRAP_FILE: "apikeys.txt"
 
 ## EMQX Enterprise Edition requires manual creation of a Secret containing the licensed content. Write the name of Secret to the value of "emqxLicenseSecretName"
 ## Example:
@@ -171,7 +172,7 @@ service:
   ## - 10.10.10.0/24
   ##
   loadBalancerSourceRanges: []
-  ## Set the ExternalIPs
+  ## Set the ExternalIPsF
   ##
   externalIPs: []
   ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints.
