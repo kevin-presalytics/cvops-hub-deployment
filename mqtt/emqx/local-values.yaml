@@ -66,15 +66,14 @@ resources: {}
 
 # TODO: Uncomment for updated helm chart beyond 5.0.22 --> bug in these settings currently
 extraVolumeMounts:
-- name: api-key
-  mountPath: /tmp/api_keys.txt
-  subPath: api_keys.txt
+- name: emqx-bootstrap
+  mountPath: /tmp/bootstrap
 
 ## Additional volumes to the default backend pod.
 extraVolumes:
-- name: api-key
+- name: emqx-bootstrap
   secret:  
-    secretName: api-key
+    secretName: emqx-bootstrap
 
 # Containers that run before the creation of EMQX containers. They can contain utilities or setup scripts.
 initContainers: {}
@@ -121,7 +120,8 @@ emqxConfig:
   EMQX_CLUSTER__DISCOVERY_STRATEGY: "dns"
   EMQX_DASHBOARD__DEFAULT_USERNAME: "admin"
   EMQX_DASHBOARD__DEFAULT_PASSWORD: "public"
-  EMQX_API_KEY__BOOTSTRAP_FILE: "/tmp/api_keys.txt"
+  EMQX_API_KEY__BOOTSTRAP_FILE: "/tmp/bootstrap/api_keys.txt"
+  EMQX_DASHBOARD__BOOTSTRAP_USERS_FILE: "/tmp/bootstrap/users.txt"
 
 ## EMQX Enterprise Edition requires manual creation of a Secret containing the licensed content. Write the name of Secret to the value of "emqxLicenseSecretName"
 ## Example:
