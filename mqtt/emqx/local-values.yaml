@@ -64,14 +64,14 @@ resources: {}
 
 ## Additional volumeMounts to the default backend container.
 extraVolumeMounts:
-- name: api-key
-  mountPath: /opt/emqx/etc/api_keys.txt
-  subPath: api_keys.txt
+  - name: api-key
+    mountPath: /opt/emqx/etc/api_keys.txt
+    subPath: api_keys.txt
 
 extraVolumes:
 ## Additional volumes to the default backend pod.
-- name: api-key
-  secret:  api-key
+  - name: api-key
+    secret:  api-key
 
 # Containers that run before the creation of EMQX containers. They can contain utilities or setup scripts.
 initContainers: {}
