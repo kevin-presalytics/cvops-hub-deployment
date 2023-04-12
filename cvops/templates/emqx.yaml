@@ -11,7 +11,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   sources:
-  - repoURL: https://github.com/emqx/emqx/tree/master/deploy/charts
+  - repoURL: https://repos.emqx.io/charts
     targetRevision: 5.0.21
     chart: emqx
     helm:
@@ -24,7 +24,7 @@ spec:
   - repoURL: {{ .Values.spec.source.repoURL }}
     path: mqtt/emqx/secrets
     targetRevision: {{ .Values.spec.source.targetRevision }}
-  # syncPolicy:
-  #   automated:
-  #     prune: true
-  #     selfHeal: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
