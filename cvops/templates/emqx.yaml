@@ -11,8 +11,8 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   sources:
-  - repoURL: https://repos.emqx.io/charts
-    targetRevision: 5.0.21
+  - repoURL: https://github.com/emqx/emqx/tree/master/deploy/charts
+    targetRevision: master
     chart: emqx
     helm:
       releaseName: emqx
