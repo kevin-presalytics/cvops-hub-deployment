@@ -5,3 +5,9 @@ metadata:
   namespace: argo
 spec:
   type: NodePort
+  ports:
+  - name: web
+    nodePort: 32746
+    port: 2746
+    protocol: TCP
+    targetPort: 2746
