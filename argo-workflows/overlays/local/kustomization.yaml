@@ -11,6 +11,12 @@ resources:
 patchesStrategicMerge:
 - artifact-repo.yaml
 - persistence.yaml
-- set-port-numbers.yaml
 - set-to-nodeport.yaml
+
+patchesJson6902:
+- target: 
+    name: argo-server
+    kind: Service
+    version: v1
+  path: set-port-numbers.yaml
 
