@@ -205,7 +205,7 @@ consoleService:
   type: ClusterIP
   clusterIP: ~
   port: "9001"
-  nodePort: 32001
+  nodePort: 32002
 
 consoleIngress:
   enabled: false

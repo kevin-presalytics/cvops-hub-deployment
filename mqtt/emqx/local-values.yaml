@@ -157,7 +157,7 @@ service:
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
   nodePorts:
-    mqtt:
+    mqtt: 32083
     mqttssl:
     mgmt:
     ws:
