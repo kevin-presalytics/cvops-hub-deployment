@@ -11,5 +11,5 @@ resources:
 patchesStrategicMerge:
 - artifact-repo.yaml
 - persistence.yaml
-- service.yaml
+# - service.yaml
 
