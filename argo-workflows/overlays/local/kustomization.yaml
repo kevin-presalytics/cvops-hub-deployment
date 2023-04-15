@@ -11,5 +11,6 @@ resources:
 patchesStrategicMerge:
 - artifact-repo.yaml
 - persistence.yaml
-- service.yaml
+- set-port-numbers.yaml
+- set-to-nodeport.yaml
 
