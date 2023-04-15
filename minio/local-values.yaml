@@ -174,7 +174,7 @@ service:
   type: NodePort
   clusterIP: ~
   port: "9000"
-  nodePort: 32000
+  nodePort: 39000
 
 ## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ##
