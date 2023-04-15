@@ -131,7 +131,7 @@ emqxLicenseSecretName:
 service:
   ## Service type
   ##
-  type: ClusterIP
+  type: NodePort
   ## The cluster IP if one wants to customize it to a fixed value
   ##
   clusterIP: None
