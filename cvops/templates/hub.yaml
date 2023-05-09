@@ -20,7 +20,7 @@ spec:
           value: {{ .Values.secretStore.name }}
         - name: domain
           value: {{ .Values.domain }}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
