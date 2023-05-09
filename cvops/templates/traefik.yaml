@@ -18,7 +18,7 @@ spec:
       valueFiles:
       - $values/traefik/local-values.yaml
   - repoURL: {{ .Values.spec.source.repoURL }}
-    ref: $values
+    ref: values
     targetRevision: {{ .Values.spec.source.targetRevision }}
   - repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
