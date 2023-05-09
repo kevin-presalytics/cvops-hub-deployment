@@ -48,7 +48,7 @@ startupProbe:
 service:
   ## Add annotations to service
   # annotations: {}
-  type: NodePort
+  type: ClusterIP
   # externalIPs: []
   # externalTrafficPolicy: ""
   # nodePort(s) value for the LoadBalancer and NodePort service types
