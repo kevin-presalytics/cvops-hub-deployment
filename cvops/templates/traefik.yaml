@@ -17,11 +17,11 @@ spec:
     helm:
       valueFiles:
       - $values/traefik/local-values.yaml
-  - repoURL: {{ spec.source.repoURL }}
+  - repoURL: {{ .Values.spec.source.repoURL }}
     ref: $values
-    targetRevision: {{ spec.source.targetRevision }}
-  - repoURL: {{ spec.source.repoURL }}
-    targetRevision: {{ spec.source.targetRevision }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
     path: traefik/resources
     helm:
       parameters:
