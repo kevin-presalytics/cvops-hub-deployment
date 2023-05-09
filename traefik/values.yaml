@@ -1,0 +1,4 @@
+domain: local.cvops.io
+
+secretStore:
+  name: cvops-local-development

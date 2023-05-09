@@ -1,0 +1,18 @@
+{{-range .Values.namespaces}}
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cvops-tls-certificate
+  namespace: {{ . }}
+spec:
+  secretName: cvops-tls-secret
+  dnsNames:
+  - *.{{ .Values.domain }}
+  issuerRef:
+    name: cert-manager-issuer-cloudflare
+    # We can reference ClusterIssuers by changing the kind here.
+    # The default value is Issuer (i.e. a locally namespaced Issuer)
+    kind: ClusterIssuer
+    group: cert-manager.io
+{{- end }}

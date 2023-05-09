@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvops-hub-ui
+spec:
+  selector:
+    app: cvops-hub-ui
+  ports:
+  - port: 80
+    targetPort: 80

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvops-hub
+spec:
+  selector:
+    app: cvops-hub
+  ports:
+  - port: {{ .Values.hub.api.port }}
+    targetPort: {{ .Values.hub.api.port }}

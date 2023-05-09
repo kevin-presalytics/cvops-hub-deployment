@@ -17,6 +17,9 @@ spec:
     helm:
       valueFiles:
       - $values/mqtt/emqx/local-values.yaml
+      parameters:
+      - name: "ingress.mqtt.hosts"
+        value: [ mqtt.{{ .Values.domain }} ]
   - repoURL: {{ .Values.spec.source.repoURL }}
     ref: values
     targetRevision: {{ .Values.spec.source.targetRevision }}

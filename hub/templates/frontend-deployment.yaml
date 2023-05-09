@@ -1,0 +1,46 @@
+{{ if .Values.hub.ui.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvops-hub-ui
+spec:  
+  selector:
+    matchLabels:
+      app: cvops-hub-ui
+  template:
+    metadata:
+      labels:
+        app: cvops-hub-ui
+    spec:
+      serviceAccountName: cvops-hub
+      # TODO: Add pod security context for production as non-root user
+      containers:
+      - name: cvops-hub-ui
+        image: {{ .Values.hub.ui.image }}
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+          requests:
+            memory: "256Mi"
+            cpu: "125m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: cvops-ui-settings
+          mountPath: /usr/share/nginx/html/ui-settings.yaml
+          readOnly: true
+          subPath: ui-settings.yaml
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+    volumes:
+    - name: cvops-ui-settings
+      configMap:
+        name: cvops-ui-settings
+        items:
+        - key: ui-settings.yaml
+          path: ui-settings.yaml
+
+{{ end }}

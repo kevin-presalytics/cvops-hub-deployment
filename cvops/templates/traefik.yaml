@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: traefik
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  sources:
+  - repoURL: https://traefik.github.io/charts
+    targetRevision: 23.0.1
+    chart: traefik
+    helm:
+      valueFiles:
+      - $values/traefik/local-values.yaml
+  - repoURL: {{ spec.source.repoURL }}
+    ref: $values
+    targetRevision: {{ spec.source.targetRevision }}
+  - repoURL: {{ spec.source.repoURL }}
+    targetRevision: {{ spec.source.targetRevision }}
+    path: traefik/resources
+    helm:
+      parameters:
+        - name: "secretStore.name"
+          value: {{ .Values.secretStore.name }}
+        - name: domain
+          value: {{ .Values.domain }}
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true

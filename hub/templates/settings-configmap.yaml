@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cvops-appsettings
+data:
+  appsettings.yaml: |
+    {{ if .Values.mqtt.enabled }}
+    mqtt:
+      uri: {{ .Values.mqtt.protocol }}://{{ .Values.mqtt.host }}
+      port: {{ .Values.mqtt.port }}
+      websocketPort: {{ .Values.mqtt.websocketPort }}
+      websocketProtocol: {{ .Values.mqtt.websocketProtocol }}
+      {{ if .Values.mqtt.adminUsername }}
+      adminUsername: {{ .Values.mqtt.adminUsername }}
+      {{ end }}
+      {{ if .Values.mqtt.adminPassword }}
+      adminPassword: {{ .Values.mqtt.adminPassword }}
+      {{ end }}
+      adminPort: {{ .Values.mqtt.adminPort }}
+      authUrl: http://{{ .Values.hub.mqttController.host }}:{{ .Values.hub.mqttController.port }}/mqtt/auth
+      securePort: {{ .Values.mqtt.securePort }}
+    {{ end }}
+    {{ if .Values.postgresql.enabled }}
+    postgresql:
+      host: {{ .Values.postgresql.host }}
+      {{ if .Values.postgresql.username }}
+      username: {{ .Values.postgresql.username }}
+      {{ end }}
+      {{ if .Values.postgresql.password }}
+      password: {{ .Values.postgresql.password }}
+      {{ end }}
+      {{ if .Values.postgresql.port }}
+      port: {{ .Values.postgresql.port }}
+      {{ else }}
+      port: 5432
+      {{ end }}
+      {{ if .Values.postgresql.database }}
+      database: {{ .Values.postgresql.database }}
+      {{ else }}
+      database: hub
+      {{ end }}
+      {{ if .Values.postgresql.sslMode }}
+      sslMode: {{ .Values.postgresql.sslMode}}
+      {{ else }}
+      sslMode: require
+      {{ end }}
+    {{ end }}
+    hub:
+      api:
+        port: {{ .Values.hub.api.port }}
+        host: {{ .Values.hub.api.host }}
+      mqttController:
+        port: {{ .Values.hub.mqttController.port }}
+        host: {{ .Values.hub.mqttController.host }}
+    auth:
+      userIdJwtClaim: {{ .Values.auth.oidc.userIdJwtClaim }}
+      oidc:
+        wellKnownEndpoint: {{ .Values.auth.oidc.metadataUrl }}
+    logging:
+      level: {{ .Values.logging.level }}
+      format: {{ .Values.logging.format }}
+  ui-settings.yaml: |
+    mqttUrl: {{ .Values.mqtt.websocketProtocol }}://api.{{ .Values.domain }}:{{ .Values.mqtt.websocketPort }}/mqtt
+    oidc:
+      clientId: {{ .Values.auth.oidc.clientId }}
+      redirectUri: {{ .Values.auth.oidc.redirectUri }}
+      authority: {{ .Values.auth.oidc.authority }}
+      metadataUrl: {{ .Values.auth.oidc.metadataUrl }} 
+      scope: '{{ .Values.auth.oidc.scope }}'

@@ -1,0 +1,8 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: influxdb-auth
+type: Opaque
+data:
+  influxdb-user: <path:{{ .Values.secretStore.name }}#influxdb-user | base64encode>
+  influxdb-password: <path:{{ .Values.secretStore.name }}#influxdb-password | base64encode>

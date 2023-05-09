@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hub
+  namespace: cvops
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: cvops
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  sources:
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: hub
+    helm:
+      parameters:
+        - name: "secretStore.name"
+          value: {{ .Values.secretStore.name }}
+        - name: "domain"
+          value: {{ .Values.domain }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

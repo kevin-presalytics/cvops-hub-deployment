@@ -1,41 +1,9 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: cvops
-  labels:
-    name: cvops
+{{- range .Values.namespaces }}
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: mqtt
+  name: {{ . }}
   labels:
-    name: mqtt
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: storage
-  labels:
-    name: storage
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: databases
-  labels:
-    name: databases
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: argo
-  labels:
-    name: argo
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: monitoring
-  labels:
-    name: monitoring
+    name: {{ . }}
+{{- end }}

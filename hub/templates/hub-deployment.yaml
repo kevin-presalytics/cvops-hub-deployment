@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvops-hub
+spec:
+  selector:
+    matchLabels:
+      app: cvops-hub
+  template:
+    metadata:
+      labels:
+        app: cvops-hub
+    spec:
+      serviceAccountName: cvops-hub
+      volumes:
+        - name: appsettings
+          configMap:
+            name: cvops-appsettings
+            items:
+              - key: appsettings.yaml
+                path: appsettings.yaml
+      containers:
+      - name: cvops-hub
+        image: docker pull ghcr.io/kevin-presalytics/cvops-hub:main 
+        imagePullPolicy: Always
+        command: ["dotnet", "hub.dll"]
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+          requests:
+            memory: "256Mi"
+            cpu: "125m"
+        volumeMounts:
+          - mountPath: /app/appsettings.yaml
+            name: appsettings
+            subPath: appsettings.yaml
+        ports:
+        - containerPort: {{ .Values.hub.api.port }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+      initContainers:
+      - name: db-migrations
+        image: docker pull ghcr.io/kevin-presalytics/cvops-hub:main 
+        imagePullPolicy: Always
+        command: ["dotnet", "db-migrations.dll"]
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+          requests:
+            memory: "256Mi"
+            cpu: "125m"
+        volumeMounts:
+          - mountPath: /app/appsettings.yaml
+            name: appsettings
+            subPath: appsettings.yaml
+        ports:
+        - containerPort: {{ .Values.hub.api.port }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+

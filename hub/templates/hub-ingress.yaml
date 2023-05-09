@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cvops-hub
+  labels:
+    name: cvops-hub
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: api.{{ .Values.domain }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: cvops-hub
+            port: 
+              number: {{ .Values.hub.api.port }}

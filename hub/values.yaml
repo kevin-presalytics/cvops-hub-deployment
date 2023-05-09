@@ -1,0 +1,95 @@
+# public doamin for cluster installation
+domain: local.cvops.io
+
+mqtt:
+  # enables mqtt
+  enabled: true
+  tls:
+    enabled: true
+  # protocol to use, either mqtt or mqtts
+  # mqtts requires tls to be enabled
+  protocol: mqtt
+  # host to connect to
+  # use localhost for local testing
+  # use emqx.mqtt.svc.cluster.local for kubernetes
+  host: emqx.mqtt.svc.cluster.local
+  # port for hub to connect to
+  port: 1883
+  # port for device outside cluster to connect to
+  securePort: 8883
+  # admin username for emqx api admin access 
+  adminUsername: hub
+  # overrides the admin password from secrets provider (Azure Key Vault)
+  adminPassword: Password@1
+  # For admin rest api calls to emqx
+  # also can port forward to this port to view mqtt admin console
+  adminPort: 18083
+  # url to the auth service for http authentication
+  authUrl: http://mqtt-controller.cvops.svc.cluster.local:5100/mqtt/auth
+  # For browsers use mqtt over websockets
+  # websocket protocol, etiher ws or wss
+  websocketProtocol: wss
+  # websocket port, typically 8084 for wss, 8083 for ws
+  websocketPort: 8084
+
+postgresql:
+  # installs postgresql in the cluster
+  enabled: true
+  # host to connect to
+  host: postgresql.databases.svc.cluster.local
+  # postgresql username
+  username: postgres
+  # postgresql password
+  password: postgres
+  # postgresql port
+  port: 5432
+  # the database name for the hub
+  database: hub
+  # can be disable, require, verify-ca, verify-full
+  sslMode: require
+
+auth:
+  # OpenID Connect (OIDC) settings
+  oidc:
+    # client id for to use to autehnticate with the identity provider
+    clientId: ff1e83a8-8997-4bc9-9907-0b51bfbaddce
+    # callback url relative to the ui
+    redirectUri: /oidc-callback/
+    # authority url for the identity provider
+    authority: https://login2cvops.b2clogin.com/
+    # metadata url for the identity provider
+    # Also known as the "well known endpoint" for an oidc congi
+    metadataUrl: https://login2cvops.b2clogin.com/login2cvops.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_Hub_SignInAndSignUp
+    # scope to request from the identity provider
+    scope: 'openid offline_access https://login2cvops.onmicrosoft.com/api/cvops'
+    # the jwt claim to use as the user id, defaults to sub
+    userIdJwtClaim: sub
+
+hub:
+  api:
+    # listen port for cvops api
+    port: 5000
+    # host to listen on for cvops api
+    host: api.cvops.svc.cluster.local
+  mqttController:
+    # listen port for mqtt controller (for http auth service)
+    port: 5100
+    # host to listen on for mqtt controller
+    host: mqtt-controller.cvops.svc.cluster.local
+  ui:
+    # disable if running as Jamstack app
+    enabled: true
+    image: ghcr.io/kevin-presalytics/cvops-hub-hub-ui:main
+
+logging:
+  # set to debug for more verbose logging, info for less verbose logging
+  level: debug
+  # can be json or text
+  format: text
+
+secretStore:
+  # type of secret store
+  # only support azureKeyVault for now
+  type: azureKeyVault
+  # REQUIRED: name of azure key vault 
+  name: DEBUG

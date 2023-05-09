@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvops-mqtt-controller
+spec:
+  selector:
+    matchLabels:
+      app: cvops-mqtt-controller
+  template:
+    metadata:
+      labels:
+        app: cvops-mqtt-controller
+    spec: 
+      serviceAccountName: cvops-hub
+      replicas: 2
+      volumes:
+        - name: appsettings
+          configMap:
+            name: cvops-appsettings
+            items:
+              - key: appsettings.yaml
+                path: appsettings.yaml
+      # TODO: Add pod security context for production as non-root user
+      containers:
+      - name: cvops-mqtt-controller
+        image: docker pull ghcr.io/kevin-presalytics/cvops-hub:main 
+        imagePullPolicy: Always
+        command: ["dotnet", "mqtt-controller.dll"]
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+        volumeMounts:
+          - mountPath: /app/appsettings.yaml
+            name: appsettings
+            subPath: appsettings.yaml
+            readOnly: true
+        ports:
+        - containerPort: {{ .Values.hub.mqttController.port }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+
