@@ -18,7 +18,7 @@ spec:
       parameters:
         - name: "secretStore.name"
           value: {{ .Values.secretStore.name }}
-        - name: "domain"
+        - name: domain
           value: {{ .Values.domain }}
   syncPolicy:
     automated:

@@ -92,4 +92,4 @@ secretStore:
   # only support azureKeyVault for now
   type: azureKeyVault
   # REQUIRED: name of azure key vault 
-  name: DEBUG
+  name: local-development-cvops

@@ -2,7 +2,6 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: minio-access
-  namespace: storage
 type: Opaque
 data:
   rootUser: <path:{{ .Values.secretStore.name }}#minio-root-user | base64encode>
