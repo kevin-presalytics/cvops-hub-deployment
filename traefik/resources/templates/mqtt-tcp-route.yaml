@@ -3,17 +3,14 @@ kind: IngressRouteTCP
 metadata:
   name: mqtt-tcp-ingress
   namespace: traefik
-
 spec:
   entryPoints:
-    - footcp
+    - mqttssl
   routes:
-    - match: HostSNI(`mqtt.{{ Values.domain }}`)
+    - match: HostSNI(`mqtt.{{ .Values.domain }}`)
       services:
         - name: emqx.mqtt.svc.cluster.local
           port: 8883
-        - name: emqx.mqtt.svc.cluster.local
-          port: 8084
   tls:
     secretName: traefik-tls
     passthrough: false
