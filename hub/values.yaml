@@ -79,7 +79,7 @@ hub:
   ui:
     # disable if running as Jamstack app
     enabled: true
-    image: ghcr.io/kevin-presalytics/cvops-hub-ui:main
+    image: ghcr.io/kevin-presalytics/cvops-hub-frontend:main
 
 logging:
   # set to debug for more verbose logging, info for less verbose logging
