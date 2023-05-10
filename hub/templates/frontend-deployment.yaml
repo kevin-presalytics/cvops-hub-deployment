@@ -13,10 +13,10 @@ spec:
         app: cvops-hub-ui
     spec:
       serviceAccountName: cvops-hub
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
+      # securityContext:
+      #   runAsUser: 1000
+      #   runAsGroup: 1000
+      #   fsGroup: 1000
       containers:
       - name: cvops-hub-ui
         image: {{ .Values.hub.ui.image }}
@@ -35,9 +35,9 @@ spec:
           mountPath: /usr/share/nginx/html/ui-settings.yaml
           readOnly: true
           subPath: ui-settings.yaml
-        securityContext:
-          allowPrivilegeEscalation: false
-          runAsNonRoot: true
+        # securityContext:
+        #   allowPrivilegeEscalation: false
+        #   runAsNonRoot: true
       volumes:
       - name: ui-settings
         configMap:
