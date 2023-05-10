@@ -53,7 +53,7 @@ data:
           - sh
           - "-c"
           - |
-            helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
+            helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE -f <(echo "$ARGOCD_ENV_helm_values") . |
             argocd-vault-plugin generate -
       lockRepo: false
   avp.yaml: |

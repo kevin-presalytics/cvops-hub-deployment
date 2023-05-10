@@ -14,12 +14,15 @@ spec:
   - repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: hub
-    helm:
-      parameters:
-        - name: "secretStore.name"
-          value: {{ .Values.secretStore.name }}
-        - name: domain
-          value: {{ .Values.domain }}
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+      - name: helm_values
+        value: |
+          domain: {{ .Values.domain }}
+          secretStore:
+            name: {{ .Values.secretStore.name }}
+            type: azureKeyVault
   # syncPolicy:
   #   automated:
   #     prune: true
