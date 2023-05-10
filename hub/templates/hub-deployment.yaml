@@ -21,7 +21,7 @@ spec:
                 path: appsettings.yaml
       containers:
       - name: cvops-hub
-        image: docker pull ghcr.io/kevin-presalytics/cvops-hub:main 
+        image: ghcr.io/kevin-presalytics/cvops-hub:main 
         imagePullPolicy: Always
         command: ["dotnet", "hub.dll"]
         resources:
@@ -42,7 +42,7 @@ spec:
           runAsNonRoot: true
       initContainers:
       - name: db-migrations
-        image: docker pull ghcr.io/kevin-presalytics/cvops-hub:main 
+        image: ghcr.io/kevin-presalytics/cvops-hub:main 
         imagePullPolicy: Always
         command: ["dotnet", "db-migrations.dll"]
         resources:

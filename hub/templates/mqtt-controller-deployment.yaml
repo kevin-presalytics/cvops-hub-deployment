@@ -23,7 +23,7 @@ spec:
       # TODO: Add pod security context for production as non-root user
       containers:
       - name: cvops-mqtt-controller
-        image: docker pull ghcr.io/kevin-presalytics/cvops-hub:main 
+        image: ghcr.io/kevin-presalytics/cvops-hub:main 
         imagePullPolicy: Always
         command: ["dotnet", "mqtt-controller.dll"]
         resources:
