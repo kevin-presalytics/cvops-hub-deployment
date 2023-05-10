@@ -1,8 +1,0 @@
-kind: Secret
-apiVersion: v1
-metadata:
-  name: minio-access
-type: Opaque
-data:
-  rootUser: <path:{{ .Values.secretStore.name }}#minio-root-user | base64encode>
-  rootPassword: <path:{{ .Values.secretStore.name }}#minio-root-password | base64encode>

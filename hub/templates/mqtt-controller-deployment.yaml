@@ -26,7 +26,7 @@ spec:
         fsGroup: 1000
       containers:
       - name: cvops-mqtt-controller
-        image: ghcr.io/kevin-presalytics/cvops-hub:main 
+        image: {{ .Values.hub.mqttController.image }}
         imagePullPolicy: Always
         command: ["dotnet", "mqtt-controller.dll"]
         resources:

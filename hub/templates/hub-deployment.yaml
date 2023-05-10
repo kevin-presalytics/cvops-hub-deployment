@@ -25,7 +25,7 @@ spec:
         fsGroup: 1000
       containers:
       - name: cvops-hub
-        image: ghcr.io/kevin-presalytics/cvops-hub:main 
+        image: {{ .Values.hub.api.image }}
         imagePullPolicy: Always
         command: ["dotnet", "hub.dll"]
         resources:
@@ -44,9 +44,12 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
+        envFrom:
+        - secretRef:
+            name: hub
       initContainers:
       - name: db-migrations
-        image: ghcr.io/kevin-presalytics/cvops-hub:main 
+        image: {{ .Values.hub.api.image }}
         imagePullPolicy: Always
         command: ["dotnet", "db-migrations.dll"]
         resources:

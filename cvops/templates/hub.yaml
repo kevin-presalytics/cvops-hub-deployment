@@ -23,6 +23,17 @@ spec:
           secretStore:
             name: {{ .Values.secretStore.name }}
             type: azureKeyVault
+          mqtt:
+            adminUsername: <path:{{ .Values.secretStore.name }}#mqtt-api-key>
+            adminPassword: <path:{{ .Values.secretStore.name }}#mqtt-api-secret>
+          postgresql:
+            password: <path:{{ .Values.secretStore.name }}#postgresql-password>
+          storage:
+            key: <path:{{ .Values.secretStore.name }}#minio-root-user>
+            secret: <path:{{ .Values.secretStore.name }}#minio-root-password>
+          influxdb:
+            user: <path:{{ .Values.secretStore.name }}#influxdb-user>
+            password: <path:{{ .Values.secretStore.name }}#influxdb-password>
   # syncPolicy:
   #   automated:
   #     prune: true
