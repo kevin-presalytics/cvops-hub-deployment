@@ -20,7 +20,10 @@ spec:
             items:
               - key: appsettings.yaml
                 path: appsettings.yaml
-      # TODO: Add pod security context for production as non-root user
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
       - name: cvops-mqtt-controller
         image: ghcr.io/kevin-presalytics/cvops-hub:main 
@@ -43,4 +46,5 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
+         
 

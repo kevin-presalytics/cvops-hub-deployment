@@ -13,7 +13,10 @@ spec:
         app: cvops-hub-ui
     spec:
       serviceAccountName: cvops-hub
-      # TODO: Add pod security context for production as non-root user
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
       - name: cvops-hub-ui
         image: {{ .Values.hub.ui.image }}
