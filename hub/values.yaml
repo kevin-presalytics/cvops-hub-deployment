@@ -70,7 +70,7 @@ hub:
     # Whether to enable the cvops api
     enabled: true
     # Image to run api with
-    image: ghcr.io/kevin-presalytics/cvops-hub:main
+    image: ghcr.io/kevin-presalytics/cvops-hub:latest
     # listen port for cvops api
     port: 5000
     # host to listen on for cvops api
@@ -79,7 +79,7 @@ hub:
     # Whether to enable the mqtt controller
     enabled: true
     # Image to run mqtt controller with
-    image: ghcr.io/kevin-presalytics/cvops-hub:main
+    image: ghcr.io/kevin-presalytics/cvops-hub:latest
     # listen port for mqtt controller (for http auth service)
     port: 5100
     # host to listen on for mqtt controller
@@ -87,7 +87,7 @@ hub:
   ui:
     # disable if running as Jamstack app
     enabled: true
-    image: ghcr.io/kevin-presalytics/cvops-hub-frontend:main
+    image: ghcr.io/kevin-presalytics/cvops-hub-frontend:latest
 
 storage:
   key: admin
