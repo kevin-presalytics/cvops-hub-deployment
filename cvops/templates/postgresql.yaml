@@ -14,18 +14,16 @@ spec:
   - repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 12.2.7
     chart: postgresql
-    helm:
-      releaseName: postgresql
-      valueFiles:
-      - $values/postgresql/local-values.yaml
-  - repoURL: {{ .Values.spec.source.repoURL }}
-    ref: values
-    targetRevision: {{ .Values.spec.source.targetRevision }}
-  - repoURL: {{ .Values.spec.source.repoURL }}
-    path: postgresql/secrets
-    targetRevision: {{ .Values.spec.source.targetRevision }}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: true
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+      - name: helm_values
+        value: |
+          auth:
+            postgresPassword: <path:{{ .Values.secretStore.name }}#postgresql-password>
+
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #     allowEmpty: true

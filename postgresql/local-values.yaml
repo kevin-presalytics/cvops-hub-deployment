@@ -25,14 +25,14 @@ global:
     ## @param global.postgresql.auth.secretKeys.replicationPasswordKey Name of key in existing secret to use for PostgreSQL credentials (overrides `auth.secretKeys.replicationPasswordKey`). Only used when `global.postgresql.auth.existingSecret` is set.
     ##
     auth:
-      postgresPassword: admin
+      postgresPassword: ""
       username: ""
       password: ""
       database: ""
-      existingSecret: postgresql-credentials
+      existingSecret: ""
       secretKeys:
-        adminPasswordKey: postgresql-password
-        userPasswordKey: postgresql-password
+        adminPasswordKey: ""
+        userPasswordKey: ""
         replicationPasswordKey: ""
     ## @param global.postgresql.service.ports.postgresql PostgreSQL service port (overrides `service.ports.postgresql`)
     ##
@@ -95,7 +95,7 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/postgresql
-  tag: 15.2.0-debian-11-r16
+  tag: 15.2.0-debian-11-r30
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -590,7 +590,7 @@ primary:
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
     nodePorts:
-      postgresql: 32432
+      postgresql: ""
     ## @param primary.service.clusterIP Static clusterIP or None for headless services
     ## e.g:
     ## clusterIP: None
@@ -666,7 +666,7 @@ primary:
       - ReadWriteOnce
     ## @param primary.persistence.size PVC Storage Request for PostgreSQL volume
     ##
-    size: 1Gi
+    size: 8Gi
     ## @param primary.persistence.annotations Annotations for the PVC
     ##
     annotations: {}
@@ -1003,7 +1003,7 @@ readReplicas:
       - ReadWriteOnce
     ## @param readReplicas.persistence.size PVC Storage Request for PostgreSQL volume
     ##
-    size: 1Gi
+    size: 8Gi
     ## @param readReplicas.persistence.annotations Annotations for the PVC
     ##
     annotations: {}
@@ -1136,7 +1136,7 @@ volumePermissions:
   image:
     registry: docker.io
     repository: bitnami/bitnami-shell
-    tag: 11-debian-11-r102
+    tag: 11-debian-11-r114
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
@@ -1231,7 +1231,7 @@ metrics:
   image:
     registry: docker.io
     repository: bitnami/postgres-exporter
-    tag: 0.12.0-debian-11-r72
+    tag: 0.12.0-debian-11-r84
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
