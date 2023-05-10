@@ -28,19 +28,19 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: cvops-ui-settings
+        - name: ui-settings
           mountPath: /usr/share/nginx/html/ui-settings.yaml
           readOnly: true
           subPath: ui-settings.yaml
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
-    volumes:
-    - name: cvops-ui-settings
-      configMap:
-        name: cvops-ui-settings
-        items:
-        - key: ui-settings.yaml
-          path: ui-settings.yaml
+      volumes:
+      - name: ui-settings
+        configMap:
+          name: cvops-appsettings
+          items:
+          - key: ui-settings.yaml
+            path: ui-settings.yaml
 
 {{ end }}
