@@ -20,10 +20,12 @@ spec:
             items:
               - key: appsettings.yaml
                 path: appsettings.yaml
+      {{- if not .Values.hub.mqttController.debugMode }}
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
+      {{- end }}
       containers:
       - name: cvops-mqtt-controller
         image: {{ .Values.hub.mqttController.image }}
@@ -49,8 +51,9 @@ spec:
           value: "{{ .Values.hub.mqttController.debugMode }}"
         ports:
         - containerPort: {{ .Values.hub.mqttController.port }}
+        {{- if not .Values.hub.mqttController.debugMode }}
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
+        {{- end }}
          
-

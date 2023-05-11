@@ -19,10 +19,12 @@ spec:
             items:
               - key: appsettings.yaml
                 path: appsettings.yaml
+      {{- if not (or (eq .Values.hub.api.debugMode true) (eq .Values.hub.dbMigrations.debugMode true)) }}
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
+      {{- end }}
       containers:
       - name: cvops-hub
         image: {{ .Values.hub.api.image }}
@@ -41,9 +43,11 @@ spec:
             subPath: appsettings.yaml
         ports:
         - containerPort: {{ .Values.hub.api.port }}
+        {{- if not .Values.hub.api.debugMode }}
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
+        {{- end }}
         env:
         - name: debug
           value: "{{ .Values.hub.api.debugMode }}"
@@ -68,9 +72,11 @@ spec:
             subPath: appsettings.yaml
         ports:
         - containerPort: {{ .Values.hub.api.port }}
+        {{- if not .Values.hub.dbMigrations.debugMode }}
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
+        {{- end }}
         envFrom:
         - secretRef:
             name: hub
