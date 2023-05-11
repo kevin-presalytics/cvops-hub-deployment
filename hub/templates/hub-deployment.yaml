@@ -26,12 +26,8 @@ spec:
       containers:
       - name: cvops-hub
         image: {{ .Values.hub.api.image }}
-        imagePullPolicy: Always
-        {{- if .Values.hub.api.debugMode }}
-        command: ["dotnet", "debugger.dll"]
-        {{- else }}
         command: ["dotnet", "hub.dll"]
-        {{- end }}
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "512Mi"
@@ -48,10 +44,12 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
+        env:
+        - name: debug
+          value: {{ .Values.hub.api.debugMode }}
         envFrom:
         - secretRef:
             name: hub
-      {{- if not .Values.hub.api.debugMode }}
       initContainers:
       - name: db-migrations
         image: {{ .Values.hub.api.image }}
@@ -76,5 +74,6 @@ spec:
         envFrom:
         - secretRef:
             name: hub
-      {{- end }}
-
+        env:
+        - name: debug
+          value: {{ .Values.hub.dbMigrations.debugMode }}

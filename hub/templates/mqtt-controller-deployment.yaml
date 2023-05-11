@@ -28,11 +28,7 @@ spec:
       - name: cvops-mqtt-controller
         image: {{ .Values.hub.mqttController.image }}
         imagePullPolicy: Always
-        {{- if .Values.hub.mqttController.debugMode }}
-        command: ["dotnet", "debugger.dll"]
-        {{- else }}
         command: ["dotnet", "mqtt-controller.dll"]
-        {{- end }}
         resources:
           limits:
             memory: "512Mi"
@@ -45,6 +41,12 @@ spec:
             name: appsettings
             subPath: appsettings.yaml
             readOnly: true
+        envFrom:
+        - secretRef:
+            name: hub
+        env:
+        - name: debug
+          value: {{ .Values.hub.mqttController.debugMode }}
         ports:
         - containerPort: {{ .Values.hub.mqttController.port }}
         securityContext:
