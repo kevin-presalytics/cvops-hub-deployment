@@ -28,7 +28,11 @@ spec:
       - name: cvops-mqtt-controller
         image: {{ .Values.hub.mqttController.image }}
         imagePullPolicy: Always
+        {{- if .Values.hub.mqttController.debugMode }}
+        command: ["dotnet", "debugger.dll"]
+        {{- else }}
         command: ["dotnet", "mqtt-controller.dll"]
+        {{- end }}
         resources:
           limits:
             memory: "512Mi"

@@ -69,6 +69,9 @@ hub:
   api:
     # Whether to enable the cvops api
     enabled: true
+    # Launch container in debug mode, which runs a debug process to keep the container alive
+    # You attached to the container to debug via vscode or kubectl
+    debugMode: true
     # Image to run api with
     image: ghcr.io/kevin-presalytics/cvops-hub:latest
     # listen port for cvops api
@@ -78,6 +81,9 @@ hub:
   mqttController:
     # Whether to enable the mqtt controller
     enabled: true
+    # Launch container in debug mode, which runs a debug process to keep the container alive
+    # You attached to the container to debug via vscode or kubectl
+    debugMode: false
     # Image to run mqtt controller with
     image: ghcr.io/kevin-presalytics/cvops-hub:latest
     # listen port for mqtt controller (for http auth service)
