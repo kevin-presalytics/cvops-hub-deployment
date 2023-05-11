@@ -46,7 +46,7 @@ spec:
             name: hub
         env:
         - name: debug
-          value: {{ .Values.hub.mqttController.debugMode }}
+          value: "{{ .Values.hub.mqttController.debugMode }}"
         ports:
         - containerPort: {{ .Values.hub.mqttController.port }}
         securityContext:

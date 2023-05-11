@@ -46,7 +46,7 @@ spec:
           runAsNonRoot: true
         env:
         - name: debug
-          value: {{ .Values.hub.api.debugMode }}
+          value: "{{ .Values.hub.api.debugMode }}"
         envFrom:
         - secretRef:
             name: hub
@@ -76,4 +76,4 @@ spec:
             name: hub
         env:
         - name: debug
-          value: {{ .Values.hub.dbMigrations.debugMode }}
+          value: "{{ .Values.hub.dbMigrations.debugMode }}"
