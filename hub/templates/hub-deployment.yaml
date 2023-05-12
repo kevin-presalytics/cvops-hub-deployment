@@ -28,7 +28,7 @@ spec:
       containers:
       - name: cvops-hub
         image: {{ .Values.hub.api.image }}
-        command: ["dotnet", "hub.dll"]
+        command: ["dotnet", "api.dll"]
         imagePullPolicy: Always
         resources:
           limits:
