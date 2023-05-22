@@ -8,7 +8,7 @@ mqtt:
     enabled: true
   # protocol to use, either mqtt or mqtts
   # mqtts requires tls to be enabled
-  protocol: mqtt
+  protocol: tcp
   # host to connect to
   # use localhost for local testing
   # use emqx.mqtt.svc.cluster.local for kubernetes
