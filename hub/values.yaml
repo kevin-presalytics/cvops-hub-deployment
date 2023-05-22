@@ -26,11 +26,14 @@ mqtt:
   adminPort: 18083
   # url to the auth service for http authentication
   authUrl: http://mqtt-controller.cvops.svc.cluster.local:5100/mqtt/auth
-  # For browsers use mqtt over websockets
-  # websocket protocol, etiher ws or wss
-  websocketProtocol: wss
+  # For browsers use mqtt over web sockets
+  # websocket protocol, either ws or wss
+  websocketProtocol: ws
   # websocket port, typically 8084 for wss, 8083 for ws
-  websocketPort: 8084
+  websocketPort: 8083
+  # whether to instruct clients to use tls for web sockets and mqtt connections
+  useTls: true
+
 
 postgresql:
   # installs postgresql in the cluster
@@ -88,6 +91,8 @@ hub:
     port: 5100
     # host to listen on for mqtt controller
     host: mqtt-controller.cvops.svc.cluster.local
+    ## Device access endpoint
+
   ui:
     # disable if running as Jamstack app
     enabled: true
