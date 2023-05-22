@@ -6,7 +6,7 @@ data:
   appsettings.yaml: |
     {{- if .Values.mqtt.enabled }}
     mqtt:
-      uri: {{ .Values.mqtt.protocol }}://{{ .Values.mqtt.host }}
+      host: {{ .Values.mqtt.clusterInternalHost }}
       port: {{ .Values.mqtt.port }}
       websocketPort: {{ .Values.mqtt.websocketPort }}
       websocketProtocol: {{ .Values.mqtt.websocketProtocol }}
