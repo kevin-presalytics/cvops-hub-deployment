@@ -34,6 +34,10 @@ spec:
           influxdb:
             user: <path:{{ .Values.secretStore.name }}#influxdb-user>
             password: <path:{{ .Values.secretStore.name }}#influxdb-password>
+          hub:
+            auth:
+              oidc:
+                redirectUri: https://{{ .Values.domain }}/oidc-callback/
   # syncPolicy:
   #   automated:
   #     prune: true
