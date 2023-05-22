@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cvops-mqtt-controller
+  name: mqtt-controller
 spec:
   selector:
     matchLabels:
-      app: cvops-mqtt-controller
+      app: mqtt-controller
   template:
     metadata:
       labels:
-        app: cvops-mqtt-controller
+        app: mqtt-controller
     spec: 
       serviceAccountName: cvops-hub
       replicas: 2
@@ -27,7 +27,7 @@ spec:
         fsGroup: 1000
       {{- end }}
       containers:
-      - name: cvops-mqtt-controller
+      - name: mqtt-controller
         image: {{ .Values.hub.mqttController.image }}
         imagePullPolicy: Always
         command: ["dotnet", "mqtt-controller.dll"]

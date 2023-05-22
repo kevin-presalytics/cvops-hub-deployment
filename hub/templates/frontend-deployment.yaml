@@ -2,15 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cvops-hub-ui
+  name: ui
 spec:  
   selector:
     matchLabels:
-      app: cvops-hub-ui
+      app: ui
   template:
     metadata:
       labels:
-        app: cvops-hub-ui
+        app: ui
     spec:
       serviceAccountName: cvops-hub
       # securityContext:
@@ -18,7 +18,7 @@ spec:
       #   runAsGroup: 1000
       #   fsGroup: 1000
       containers:
-      - name: cvops-hub-ui
+      - name: ui
         image: {{ .Values.hub.ui.image }}
         imagePullPolicy: Always
         resources:

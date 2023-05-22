@@ -1,9 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cvops-hub-ui
+  name: ui
   labels:
-    name: cvops-hub-ui
+    name: ui
 spec:
   rules:
   - host: app.{{ .Values.domain }}
@@ -13,6 +13,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: cvops-hub-ui
+            name: ui
             port: 
               number: 80

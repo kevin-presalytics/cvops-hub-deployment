@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cvops-hub
+  name: hub
 spec:
   selector:
     matchLabels:
-      app: cvops-hub
+      app: hub
   template:
     metadata:
       labels:
-        app: cvops-hub
+        app: hub
     spec:
       serviceAccountName: cvops-hub
       volumes:
@@ -26,7 +26,7 @@ spec:
         fsGroup: 1000
       {{- end }}
       containers:
-      - name: cvops-hub
+      - name: hub
         image: {{ .Values.hub.api.image }}
         command: ["dotnet", "api.dll"]
         imagePullPolicy: Always
