@@ -99,7 +99,7 @@ hub:
     image: ghcr.io/kevin-presalytics/cvops-hub-frontend:latest
   dbMigrations:
     # Set debug environment variable
-    debugMode: true
+    debugMode: false
 
 storage:
   key: admin
