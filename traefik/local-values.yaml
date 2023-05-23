@@ -6,10 +6,6 @@ image:
   tag: ""
   pullPolicy: IfNotPresent
 
-# Add additional label to all resources
-# commonLabels:
-#   key: value
-
 #
 # Configure integration with Traefik Hub
 #
@@ -69,12 +65,12 @@ deployment:
     #   hostPath:
     #     path: /var/run/statsd-exporter
   # Additional initContainers (e.g. for setting file permission as shown below)
-  initContainers: []
+  initContainers:
     # The "volume-permissions" init container is required if you run into permission issues.
     # Related issue: https://github.com/traefik/traefik-helm-chart/issues/396
-    # - name: volume-permissions
-    #   image: busybox:latest
-    #   command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+    - name: volume-permissions
+      image: busybox:latest
+      command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
     #   securityContext:
     #     runAsNonRoot: true
     #     runAsGroup: 65532
@@ -510,19 +506,19 @@ globalArguments:
 # Additional arguments to be passed at Traefik's binary
 # All available options available on https://docs.traefik.io/reference/static-configuration/cli/
 ## Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
-additionalArguments: []
+additionalArguments:
 #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
 
 # Environment variables to be passed to Traefik's binary
-env: []
+env:
 # - name: SOME_VAR
 #   value: some-var-value
-# - name: SOME_VAR_FROM_CONFIG_MAP
-#   valueFrom:
-#     configMapRef:
-#       name: configmap-name
-#       key: config-key
+  - name: CF_DNS_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: traefik-dns
+        key: CF_DNS_API_TOKEN
 # - name: SOME_SECRET
 #   valueFrom:
 #     secretKeyRef:
@@ -533,7 +529,7 @@ envFrom:
 # - configMapRef:
 #     name: config-map-name
 - secretRef:
-    name: traefik-dns
+    name: secret-name
 
 # Configure ports
 ports:
@@ -635,23 +631,11 @@ ports:
     #
     ## Set TLS at the entrypoint
     ## https://doc.traefik.io/traefik/routing/entrypoints/#tls
-    mqttssl:
-      enabled: true
-      exposedPort: 8883
-      expose: true
-      protocol: TCP
-      targetPort: 8883
-    mqttwss:
-      enabled: true
-      exposedPort: 8084
-      expose: true
-      protocol: TCP
-      targetPort: 8084
     tls:
       enabled: true
       # this is the name of a TLSOption definition
       options: ""
-      certResolver: ""
+      certResolver: letsencrypt
       domains: []
       # - main: example.com
       #   sans:
@@ -683,6 +667,20 @@ ports:
     exposedPort: 9100
     # The port protocol (TCP/UDP)
     protocol: TCP
+  mqttssl:
+    expose: true
+    exposedPort: 8883
+    protocol: TCP
+    tls:
+      enabled: true
+      certResolver: letsencrypt
+  mqttwss:
+    expose: true
+    exposedPort: 8084
+    protocol: TCP
+    tls:
+      enabled: true
+      certResolver: letsencrypt
 
 # TLS Options are created as TLSOption CRDs
 # https://doc.traefik.io/traefik/https/tls/#tls-options
@@ -707,7 +705,12 @@ tlsOptions: {}
 #   default:
 #     defaultCertificate:
 #       secretName: tls-cert
-tlsStore: {}
+tlsStore:
+  default:
+    defaultGeneratedCert:
+      resolver: letsencrypt
+      domain:
+        main: "*.local.cvops.io"        
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
@@ -727,15 +730,13 @@ service:
   labels: {}
   # Additional entries here will be added to the service spec.
   # Cannot contain type, selector or ports entries.
-  spec:
-    externalTrafficPolicy: Local
+  spec: {}
+    # externalTrafficPolicy: Cluster
     # loadBalancerIP: "1.2.3.4"
     # clusterIP: "2.3.4.5"
   loadBalancerSourceRanges: []
     # - 192.168.0.1/32
     # - 172.16.0.0/16
-  ## Class of the load balancer implementation
-  # loadBalancerClass: service.k8s.aws/nlb
   externalIPs: []
     # - 1.2.3.4
   ## One of SingleStack, PreferDualStack, or RequireDualStack.
@@ -746,7 +747,7 @@ service:
   #   - IPv4
   #   - IPv6
   ##
-  ## An additional and optional internal Service.
+  ## An additionnal and optional internal Service.
   ## Same parameters as external Service
   # internal:
   #   type: ClusterIP
@@ -788,12 +789,12 @@ autoscaling:
 # ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 # It can be used to store TLS certificates, see `storage` in certResolvers
 persistence:
-  enabled: false
+  enabled: true
   name: data
 #  existingClaim: ""
   accessMode: ReadWriteOnce
   size: 128Mi
-  # storageClass: ""
+  storageClass: default
   # volumeName: ""
   path: /data
   annotations: {}
@@ -818,7 +819,7 @@ certResolvers:
 #     httpChallenge:
 #       entryPoint: "web"
 #     # It has to match the path with a persistent volume
-#     storage: /data/acme.json
+    storage: /data/acme.json
 
 # If hostNetwork is true, runs traefik in the host network namespace
 # To prevent unschedulabel pods due to port collisions, if hostNetwork=true

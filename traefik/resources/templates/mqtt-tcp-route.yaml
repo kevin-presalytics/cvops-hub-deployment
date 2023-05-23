@@ -10,7 +10,7 @@ spec:
     - match: HostSNI(`mqtt.local.cvops.io`)
       services:
         - name: emqx.mqtt.svc.cluster.local
-          port: 8883
+          port: 1883
   tls:
     secretName: traefik-tls
     passthrough: false
