@@ -528,8 +528,8 @@ env:
 envFrom:
 # - configMapRef:
 #     name: config-map-name
-- secretRef:
-    name: secret-name
+# - secretRef:
+#     name: secret-name
 
 # Configure ports
 ports:
