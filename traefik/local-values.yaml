@@ -669,6 +669,7 @@ ports:
     protocol: TCP
   mqttssl:
     expose: true
+    port: 1883
     exposedPort: 8883
     protocol: TCP
     tls:
@@ -676,6 +677,7 @@ ports:
       certResolver: letsencrypt
   mqttwss:
     expose: true
+    port: 8083
     exposedPort: 8084
     protocol: TCP
     tls:
