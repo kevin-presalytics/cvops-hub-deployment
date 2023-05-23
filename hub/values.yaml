@@ -83,7 +83,7 @@ hub:
     # Whether to enable the mqtt controller
     enabled: true
     # Set debug environment variable
-    debugMode: true
+    debugMode: false
     # Image to run mqtt controller with
     image: ghcr.io/kevin-presalytics/cvops-hub:latest
     # listen port for mqtt controller (for http auth service)
