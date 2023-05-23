@@ -243,7 +243,7 @@ logs:
     # format: json
     # By default, the level is set to ERROR.
     # Alternative logging levels are DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
-    level: INFO
+    level: DEBUG
   access:
     # To enable access logs
     enabled: true
