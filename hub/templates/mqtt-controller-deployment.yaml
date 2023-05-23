@@ -33,11 +33,11 @@ spec:
         command: ["dotnet", "mqtt-controller.dll"]
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "1000m"
+            memory: 512Mi
+            cpu: 1000m
           requests:
-            memory: "256Mi"
-            cpu: "500m"
+            memory: 256Mi
+            cpu: 500m
         volumeMounts:
           - mountPath: /app/appsettings.yaml
             name: appsettings
