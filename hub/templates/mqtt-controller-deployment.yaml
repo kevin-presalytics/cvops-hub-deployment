@@ -12,7 +12,7 @@ spec:
         app: mqtt-controller
     spec: 
       serviceAccountName: cvops-hub
-      replicas: 2
+      replicas: 1
       volumes:
         - name: appsettings
           configMap:
