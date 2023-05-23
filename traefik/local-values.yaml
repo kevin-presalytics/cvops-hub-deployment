@@ -636,11 +636,11 @@ ports:
       # this is the name of a TLSOption definition
       options: ""
       certResolver: letsencrypt
-      domains: []
-      # - main: example.com
-      #   sans:
-      #     - foo.example.com
-      #     - bar.example.com
+      domains: 
+        - main: local.cvops.io
+          sans:
+            - "*.local.cvops.io"
+
     #
     # One can apply Middlewares on an entrypoint
     # https://doc.traefik.io/traefik/middlewares/overview/
