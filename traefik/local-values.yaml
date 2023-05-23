@@ -806,6 +806,7 @@ certResolvers:
   letsencrypt:
 #     # for challenge options cf. https://doc.traefik.io/traefik/https/acme/
 #     email: email@example.com
+    caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
     dnsChallenge:
 #       # also add the provider's required configuration under env
 #       # or expand then from secrets/configmaps with envfrom
@@ -814,7 +815,7 @@ certResolvers:
 #       # add further options for the dns challenge as needed
 #       # cf. https://doc.traefik.io/traefik/https/acme/#dnschallenge
       delayBeforeCheck: 60
-      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      
 #       resolvers:
 #         - 1.1.1.1
 #         - 8.8.8.8
