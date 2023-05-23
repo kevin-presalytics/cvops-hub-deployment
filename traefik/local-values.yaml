@@ -634,12 +634,6 @@ ports:
     tls:
       enabled: true
       # this is the name of a TLSOption definition
-      options: ""
-      certResolver: letsencrypt
-      domains: 
-        - main: local.cvops.io
-          sans:
-            - "*.local.cvops.io"
 
     #
     # One can apply Middlewares on an entrypoint
@@ -674,7 +668,6 @@ ports:
     protocol: TCP
     tls:
       enabled: true
-      certResolver: letsencrypt
   mqttwss:
     expose: true
     port: 8084
@@ -682,7 +675,6 @@ ports:
     protocol: TCP
     tls:
       enabled: true
-      certResolver: letsencrypt
 
 # TLS Options are created as TLSOption CRDs
 # https://doc.traefik.io/traefik/https/tls/#tls-options
@@ -709,10 +701,8 @@ tlsOptions: {}
 #       secretName: tls-cert
 tlsStore:
   default:
-    defaultGeneratedCert:
-      resolver: letsencrypt
-      domain:
-        main: "*.local.cvops.io"        
+    defaultCertificate:
+      secretName: tls-secret
 
 # Options for the main traefik service, where the entrypoints traffic comes
 # from.
