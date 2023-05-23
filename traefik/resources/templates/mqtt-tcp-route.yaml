@@ -11,3 +11,4 @@ spec:
       services:
         - name: emqx
           port: 1883
+  tls: }{}
