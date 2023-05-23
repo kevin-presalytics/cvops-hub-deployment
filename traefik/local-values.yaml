@@ -796,7 +796,7 @@ persistence:
 #  existingClaim: ""
   accessMode: ReadWriteOnce
   size: 128Mi
-  storageClass: default
+  # storageClass: default
   # volumeName: ""
   path: /data
   annotations: {}
