@@ -144,7 +144,7 @@ experimental:
 # Create an IngressRoute for the dashboard
 ingressRoute:
   dashboard:
-    enabled: false
+    enabled: true
     # Additional ingressRoute annotations (e.g. for kubernetes.io/ingress.class)
     annotations: {}
     # Additional ingressRoute labels (e.g. for filtering IngressRoute by custom labels)
@@ -508,7 +508,7 @@ globalArguments:
 ## Use curly braces to pass values: `helm install --set="additionalArguments={--providers.kubernetesingress.ingressclass=traefik-internal,--log.level=DEBUG}"`
 additionalArguments:
   - --api.dashboard=true
-  - --api.insecure=true
+#  - --api.insecure=true
 #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
 
