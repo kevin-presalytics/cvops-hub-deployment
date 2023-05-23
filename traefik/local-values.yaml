@@ -811,9 +811,10 @@ certResolvers:
 #       # or expand then from secrets/configmaps with envfrom
 #       # cf. https://doc.traefik.io/traefik/https/acme/#providers
       provider: cloudflare
-#       # add futher options for the dns challenge as needed
+#       # add further options for the dns challenge as needed
 #       # cf. https://doc.traefik.io/traefik/https/acme/#dnschallenge
-#       delayBeforeCheck: 30
+      delayBeforeCheck: 60
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
 #       resolvers:
 #         - 1.1.1.1
 #         - 8.8.8.8
