@@ -7,7 +7,7 @@ spec:
   secretName: cvops-tls-secret
   dnsNames:
   - {{ .Values.domain }}
-  - *.{{ .Values.domain }}
+  - "*.{{ .Values.domain }}"
   issuerRef:
     name: cert-manager-issuer-cloudflare
     # We can reference ClusterIssuers by changing the kind here.

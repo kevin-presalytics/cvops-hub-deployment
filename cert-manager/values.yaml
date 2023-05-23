@@ -1,9 +1,3 @@
-namespaces:
-- mqtt
-- cvops
-- storage
-- traefik
-
 cloudflare:
   apiToken: ""
 
