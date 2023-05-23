@@ -3,3 +3,8 @@ namespaces:
 - cvops
 - storage
 - traefik
+
+cloudflare:
+  apiToken: ""
+
+domain: local.cvops.io

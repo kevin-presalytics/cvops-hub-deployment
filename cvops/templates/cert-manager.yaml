@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: cert-manager
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  sources:
+  - repoURL: https://charts.jetstack.io
+    targetRevision: v1.12.o
+    chart: cert-manager
+    helm:
+      releaseName: cert-manager
+      parameters:
+        - name: installCRDs
+          value: "true"
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    path: cert-manager
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+      - name: helm_values
+        value: |
+          domain: {{ .Values.domain }}
+          cloudflare:
+            apiToken: <path:{{ .Values.secretStore.name }}#cloudflare-api-token>
+
+ 
