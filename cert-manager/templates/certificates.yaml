@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: cvops-tls-certificate
+  name: tls-certificate
   namespace: traefik 
 spec:
-  secretName: cvops-tls-secret
+  secretName: tls-secret
   dnsNames:
   - {{ .Values.domain }}
   - "*.{{ .Values.domain }}"
