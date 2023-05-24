@@ -64,7 +64,6 @@ data:
     mqttUrl: {{ .Values.mqtt.websocketProtocol }}://api.{{ .Values.domain }}:{{ .Values.mqtt.websocketPort }}/mqtt
     oidc:
       clientId: {{ .Values.auth.oidc.clientId }}
-      redirectUri: {{ .Values.auth.oidc.redirectUri }}
       authority: {{ .Values.auth.oidc.authority }}
       metadataUrl: {{ .Values.auth.oidc.metadataUrl }} 
       scope: '{{ .Values.auth.oidc.scope }}'

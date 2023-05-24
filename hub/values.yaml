@@ -55,8 +55,6 @@ auth:
   oidc:
     # client id for to use to autehnticate with the identity provider
     clientId: ff1e83a8-8997-4bc9-9907-0b51bfbaddce
-    # callback url relative to the ui
-    redirectUri: /oidc-callback/
     # authority url for the identity provider
     authority: https://login2cvops.b2clogin.com/
     # metadata url for the identity provider
