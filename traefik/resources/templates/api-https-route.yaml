@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: api-https-ingress
+  namespace: cvops
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: Host(`api.{{ .Values.domain }}`) || Host(`hub.{{ .Values.domain }}`) 
+    kind: Rule
+    services:
+    - name: hub
+      port: 80
+  tls: {}

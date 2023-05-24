@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - mqttssl
   routes:
-    - match: HostSNI(`mqtt.local.cvops.io`)
+    - match: HostSNI(`mqtt.{{ .Values.domain }}`)
       services:
         - name: emqx
           port: 1883

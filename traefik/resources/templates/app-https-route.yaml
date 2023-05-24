@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: app-https-ingress
+  namespace: cvops
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: Host(`app.{{ .Values.domain }}`) || Host(`{{ .Values.domain }}`)
+    kind: Rule
+    services:
+    - name: ui
+      port: 80
+  tls: {}
