@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - mqttwss
   routes:
-    - match: HostSNI(`mqtt.{{ .Values.domain }}`)
+    - match: Host(`mqtt.{{ .Values.domain }}`)
       kind: Rule
       services:
         - name: emqx
