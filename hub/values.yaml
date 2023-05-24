@@ -4,14 +4,12 @@ domain: local.cvops.io
 mqtt:
   # enables mqtt
   enabled: true
-  tls:
-    enabled: true
   # protocol to use, either mqtt or mqtts, tcp for kuberentes?
   protocol: mqtt
   # host to connect to
   # use localhost for local testing
   # use emqx.mqtt.svc.cluster.local for kubernetes
-  host: emqx.mqtt.svc.cluster.local
+  clusterInternalHost: emqx.mqtt.svc.cluster.local
   # port for hub to connect to
   port: 1883
   # port for device outside cluster to connect to
@@ -26,10 +24,10 @@ mqtt:
   # url to the auth service for http authentication
   authUrl: http://mqtt-controller.cvops.svc.cluster.local:5100/mqtt/auth
   # For browsers use mqtt over web sockets
-  # websocket protocol, either ws or wss
-  websocketProtocol: ws
   # websocket port, typically 8084 for wss, 8083 for ws
   websocketPort: 8083
+  # secure Websocket port
+  secureWebsocketPort: 8084
   # whether to instruct clients to use tls for web sockets and mqtt connections
   useTls: true
 

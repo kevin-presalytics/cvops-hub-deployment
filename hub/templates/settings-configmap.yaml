@@ -8,9 +8,10 @@ data:
     mqtt:
       protocol: {{ .Values.mqtt.protocol }}
       host: {{ .Values.mqtt.clusterInternalHost }}
+      publicHost: mqtt.{{ .Values.domain }}
       port: {{ .Values.mqtt.port }}
       websocketPort: {{ .Values.mqtt.websocketPort }}
-      websocketProtocol: {{ .Values.mqtt.websocketProtocol }}
+      secureWebsocketPort: {{ .Values.mqtt.secureWebsocketPort }}
       {{- if .Values.mqtt.adminUsername }}
       adminUsername: {{ .Values.mqtt.adminUsername }}
       {{- end }}
@@ -61,7 +62,11 @@ data:
       level: {{ .Values.logging.level }}
       format: {{ .Values.logging.format }}
   ui-settings.yaml: |
-    mqttUrl: {{ .Values.mqtt.websocketProtocol }}://api.{{ .Values.domain }}:{{ .Values.mqtt.websocketPort }}/mqtt
+    {{- if .Values.mqtt.useTls }}
+    mqttUrl: wss://mqtt.{{ .Values.domain }}:{{ .Values.mqtt.secureWebsocketPort }}
+    {{- else }}
+    mqttUrl: ws://mqtt.{{ .Values.domain }}:{{ .Values.mqtt.websocketPort }}
+    {{- end }}
     oidc:
       clientId: {{ .Values.auth.oidc.clientId }}
       authority: {{ .Values.auth.oidc.authority }}
