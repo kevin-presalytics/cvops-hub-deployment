@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: mqtt-wss-ingress
+  namespace: mqtt
+spec:
+  entryPoints:
+    - mqttwss
+  routes:
+    - match: HostSNI(`mqtt.local.cvops.io`)
+      services:
+        - name: emqx
+          port: 8083
+  tls: {}
