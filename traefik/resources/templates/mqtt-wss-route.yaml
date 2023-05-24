@@ -8,6 +8,7 @@ spec:
     - mqttwss
   routes:
     - match: HostSNI(`mqtt.{{ .Values.domain }}`)
+      kind: Rule
       services:
         - name: emqx
           port: 8083
