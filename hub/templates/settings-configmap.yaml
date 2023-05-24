@@ -63,9 +63,11 @@ data:
       format: {{ .Values.logging.format }}
   ui-settings.yaml: |
     {{- if .Values.mqtt.useTls }}
-    mqttUrl: wss://mqtt.{{ .Values.domain }}:{{ .Values.mqtt.secureWebsocketPort }}
+    mqttUrl: wss://mqtt.{{ .Values.domain }}:{{ .Values.mqtt.secureWebsocketPort }}/mqtt
     {{- else }}
-    mqttUrl: ws://mqtt.{{ .Values.domain }}:{{ .Values.mqtt.websocketPort }}
+    mqttUrl: ws://mqtt.{{ .Values.domain }}:{{ .Values.mqtt.websocketPort }}/mqtt
+    {{- end }}
+    {{- if .Values.mqtt.adminUsername }}
     {{- end }}
     oidc:
       clientId: {{ .Values.auth.oidc.clientId }}
