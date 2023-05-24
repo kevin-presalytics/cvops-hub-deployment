@@ -4,6 +4,8 @@ metadata:
   name: hub
   labels:
     name: hub
+  annotations:
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   ingressClassName: traefik
   rules:
