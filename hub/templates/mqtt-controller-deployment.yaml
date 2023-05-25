@@ -6,13 +6,13 @@ spec:
   selector:
     matchLabels:
       app: mqtt-controller
+  replicas: 2
   template:
     metadata:
       labels:
         app: mqtt-controller
     spec: 
       serviceAccountName: cvops-hub
-      replicas: 2
       volumes:
         - name: appsettings
           configMap:
