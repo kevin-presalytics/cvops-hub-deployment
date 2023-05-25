@@ -72,7 +72,7 @@ spec:
             subPath: appsettings.yaml
         ports:
         - containerPort: {{ .Values.hub.api.port }}
-        {{- if not .Values.hub.dbMigrations.debugMode }}
+        {{- if not (or (eq .Values.hub.api.debugMode true) (eq .Values.hub.dbMigrations.debugMode true)) }}
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
