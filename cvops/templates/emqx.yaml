@@ -20,6 +20,8 @@ spec:
       parameters:
       - name: "ingress.mqtt.hosts"
         value: "{mqtt.{{ .Values.domain }}}"
+      - name: "image.tag"
+        value: "5.0"
   - repoURL: {{ .Values.spec.source.repoURL }}
     ref: values
     targetRevision: {{ .Values.spec.source.targetRevision }}
