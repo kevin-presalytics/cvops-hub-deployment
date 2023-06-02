@@ -68,7 +68,7 @@ hub:
     # Whether to enable the cvops api
     enabled: true
     # Set debug environment variable
-    debugMode: true
+    debugMode: false
     # Image to run api with
     image: ghcr.io/kevin-presalytics/cvops-hub:latest
     # listen port for cvops api
