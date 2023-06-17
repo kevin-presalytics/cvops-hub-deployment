@@ -4,6 +4,7 @@ metadata:
   name: cvops-appsettings
 data:
   appsettings.yaml: |
+    domain: {{ .Values.domain }}
     {{- if .Values.mqtt.enabled }}
     mqtt:
       protocol: {{ .Values.mqtt.protocol }}
@@ -21,6 +22,7 @@ data:
       adminPort: {{ .Values.mqtt.adminPort }}
       authUrl: http://{{ .Values.hub.mqttController.host }}:{{ .Values.hub.mqttController.port }}/mqtt/auth
       securePort: {{ .Values.mqtt.securePort }}
+      useTls: {{ .Values.mqtt.useTls }}
     {{- end }}
     {{- if .Values.postgresql.enabled }}
     postgresql:
