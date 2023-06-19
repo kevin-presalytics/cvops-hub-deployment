@@ -10,5 +10,6 @@ spec:
     - match: HostSNI(`mqtt.{{ .Values.domain }}`)
       services:
         - name: emqx
-          port: 8883
-  tls: {}
+          port: 1883
+  tls:
+    passthrough: false
