@@ -46,7 +46,7 @@ postgresql:
   # the database name for the hub
   database: hub
   # can be disable, require, verify-ca, verify-full
-  sslMode: disable
+  sslMode: allow
 
 auth:
   # OpenID Connect (OIDC) settings
