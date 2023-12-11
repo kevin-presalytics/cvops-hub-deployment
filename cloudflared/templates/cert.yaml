@@ -1,0 +1,8 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: tunnel-cert
+type: Opaque
+data:
+  cert.pem: |
+    {{ .Values.cert}}

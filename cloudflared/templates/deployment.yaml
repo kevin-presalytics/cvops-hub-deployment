@@ -43,6 +43,9 @@ spec:
         - name: creds
           mountPath: /etc/cloudflared/creds
           readOnly: true
+        - name: cert
+          mountPath: /etc/cloudflared/cert.pem
+          readOnly: true
       volumes:
       - name: creds
         secret:
@@ -60,3 +63,9 @@ spec:
           items:
           - key: config.yaml
             path: config.yaml
+      - name: cert
+        secret:
+          secretName: tunnel-cert
+          items:
+          - key: cert.pem
+            path: cert.pem
