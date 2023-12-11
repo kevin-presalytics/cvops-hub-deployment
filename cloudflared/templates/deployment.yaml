@@ -64,8 +64,8 @@ spec:
           - key: config.yaml
             path: config.yaml
       - name: cert
-        configMap:
-          name: tunnel-cert
+        secret:
+          secretName: tunnel-cert
           items:
           - key: cert.pem
             path: cert.pem
