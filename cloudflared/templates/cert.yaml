@@ -4,4 +4,4 @@ metadata:
   name: tunnel-cert
 data:
   cert.pem: |
-    {{ .Values.cert | b64dec }}
+    {{ .Values.cert }}
