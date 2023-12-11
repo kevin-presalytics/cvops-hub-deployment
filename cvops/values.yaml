@@ -24,5 +24,6 @@ namespaces:
 - monitoring
 - traefik
 - cert-manager
+- cloudflare
 
 domain: local.cvops.io
