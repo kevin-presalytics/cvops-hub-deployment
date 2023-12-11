@@ -4,5 +4,4 @@ metadata:
   name: tunnel-cert
 type: Opaque
 data:
-  cert.pem: |
-    {{ .Values.cert}}
+  cert.pem: {{ .Values.cert }}

@@ -20,8 +20,7 @@ spec:
       - name: helm_values
         value: |
           token: <path:{{ .Values.secretStore.name }}#cloudflare-tunnel-token>
-          cert: |
-            <path:{{ .Values.secretStore.name }}#cloudflare-tunnel-cert>
+          cert: <path:{{ .Values.secretStore.name }}#cloudflare-tunnel-cert>
 
   # syncPolicy:
   #   automated:
