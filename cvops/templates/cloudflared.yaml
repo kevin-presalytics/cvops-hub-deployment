@@ -19,7 +19,7 @@ spec:
       env:
       - name: helm_values
         value: |
-          cloudflare-tunnel-token: <path:{{ .Values.secretStore.name }}#cloudflare-tunnel-token>
+          token: <path:{{ .Values.secretStore.name }}#cloudflare-tunnel-token>
 
   # syncPolicy:
   #   automated:
