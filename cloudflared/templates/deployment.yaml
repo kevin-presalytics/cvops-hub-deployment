@@ -16,14 +16,15 @@ spec:
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:2023.10.0
-        args:
-        - tunnel
-        # Points cloudflared to the config file, which configures what
-        # cloudflared will actually do. This file is created by a ConfigMap
-        # below.
-        - --config
-        - /etc/cloudflared/config/config.yaml
-        - run
+        command: ["cat", "/etc/cloudflared/creds/credentials.json"]
+        # args:
+        # - tunnel
+        # # Points cloudflared to the config file, which configures what
+        # # cloudflared will actually do. This file is created by a ConfigMap
+        # # below.
+        # - --config
+        # - /etc/cloudflared/config/config.yaml
+        # - run
         livenessProbe:
           httpGet:
             # Cloudflared has a /ready endpoint which returns 200 if and only if
