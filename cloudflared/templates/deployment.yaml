@@ -16,7 +16,7 @@ spec:
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:2023.10.0
-        command: ["cat", "/etc/cloudflared/creds/credentials.json"]
+        command: ["cat /etc/cloudflared/creds/credentials.json"]
         # args:
         # - tunnel
         # # Points cloudflared to the config file, which configures what
