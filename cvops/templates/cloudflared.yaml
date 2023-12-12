@@ -1,28 +1,28 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: cloudflared
-#   namespace: argocd
-#   finalizers:
-#   - resources-finalizer.argocd.argoproj.io
-# spec:
-#   destination:
-#     namespace: cloudflare
-#     server: {{ .Values.spec.destination.server }}
-#   project: default
-#   sources:
-#   - repoURL: {{ .Values.spec.source.repoURL }}
-#     path: cloudflared
-#     targetRevision: {{ .Values.spec.source.targetRevision }}
-#     plugin:
-#       name: argocd-vault-plugin-helm
-#       env:
-#       - name: helm_values
-#         value: |
-#           token: <path:{{ .Values.secretStore.name }}#cloudflare-tunnel-token>
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflared
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: cloudflare
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  sources:
+  - repoURL: {{ .Values.spec.source.repoURL }}
+    path: cloudflared
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+      - name: helm_values
+        value: |
+          token: <path:{{ .Values.secretStore.name }}#cloudflare-tunnel-token>
 
-#   # syncPolicy:
-#   #   automated:
-#   #     prune: true
-#   #     selfHeal: true
-#   #     allowEmpty: true
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #     allowEmpty: true

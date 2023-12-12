@@ -19,6 +19,8 @@ spec:
         #command: ["cat v/etc/cloudflared/creds/credentials.json"]
         args:
         - tunnel
+        - --log-level
+        - debug
         # Points cloudflared to the config file, which configures what
         # cloudflared will actually do. This file is created by a ConfigMap
         # below.
