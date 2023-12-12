@@ -9,6 +9,7 @@ resources:
 
 patchesStrategicMerge:
 - argocd-repo-server-deploy.yaml
+- argocd-cmd-params-cm.yaml
 
 
 secretGenerator:
